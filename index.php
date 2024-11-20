@@ -100,6 +100,11 @@ $reads=$stmt->fetchAll(PDO::FETCH_ASSOC);
       margin-right: 120px;
       font-size: 15.5px;
     }
+    a{
+      margin-top: 14px;
+      display: block;
+      color: yellow;
+    }
   </style>
   <title>Todolist Application</title>
 </head>
@@ -155,6 +160,10 @@ $reads=$stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php echo htmlspecialchars($read['date']?? ''); ?>
           </div>
           </div>
+          
+          <a href="edit_task.php?id=<?php echo $read['id']; ?>">Edit</a>
+          
+          
         </li>
       <?php endforeach; ?>
         </ul>
