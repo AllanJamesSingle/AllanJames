@@ -105,6 +105,10 @@ $reads=$stmt->fetchAll(PDO::FETCH_ASSOC);
       display: block;
       color: yellow;
     }
+    .actions{
+      display: flex;
+      gap: 10px;
+    }
   </style>
   <title>Todolist Application</title>
 </head>
@@ -161,8 +165,11 @@ $reads=$stmt->fetchAll(PDO::FETCH_ASSOC);
           </div>
           </div>
           
+          <div class="actions">
           <a href="edit_task.php?id=<?php echo $read['id']; ?>">Edit</a>
           
+          <a href="delete_task.php?id=<?php echo $read['id']; ?>">Delete</a>
+          </div>
           
         </li>
       <?php endforeach; ?>
