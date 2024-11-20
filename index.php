@@ -1,3 +1,12 @@
+<?php
+include('db.php');
+
+$stmt=$pdo->query("SELECT * FROM $table");
+$reads=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +27,28 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
+      flex-direction: column;
       align-items: flex-start;
       background-color: black;
+      gap: 3px;
     }
     form{
       border: 2px solid white;
       border-radius: 10px;
       padding: 26px;
     }
-    h2{
+    .list-method{
+      border: 2px solid white;
+      border-right-color: 10px;
+      padding: 20px;
+      width: 354px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    form h2{
       margin-bottom: 18px;
+      text-align: center;
     }
     label{
       width: 120px;
@@ -59,11 +80,31 @@
       border: 1px solid white;
       border-radius: 8px;
     }
+    span{
+      display: flex;
+      gap: 8px;
+      color: cyan;
+      font-size: 16.5px;
+    }
+    .list-group h2{
+      text-align: center;
+    }
+    .okay{
+     display: flex;
+     flex-direction: column;
+    }
+    .list{
+      margin-top: 12px;
+      display: flex;
+      gap: 26px;
+      margin-right: 120px;
+      font-size: 15.5px;
+    }
   </style>
   <title>Todolist Application</title>
 </head>
 <body>
-  <form action="" method="post">
+  <form action="add_task.php" method="post">
     <div class="container">
       
       <h2>To-Do List Application</h2>
@@ -87,5 +128,41 @@
       
     </div>
   </form>
+  
+  <form>
+    <div class="list-group">
+      <h2>My Task List</h2>
+      
+      <div class="list-method">
+        <ul>
+          <?php foreach ($reads as $read): ?>
+        <li>
+          
+          <div class="okay">
+          
+          <div class="list">
+            <span>Tasks:</span>
+            <?php echo htmlspecialchars($read['task']?? ''); ?>
+          </div>
+          
+          <div class="list">
+            <span>Where:</span>
+            <?php echo htmlspecialchars($read['location']?? ''); ?>
+          </div>
+          
+          <div class="list">
+            <span>When:</span>
+            <?php echo htmlspecialchars($read['date']?? ''); ?>
+          </div>
+          </div>
+        </li>
+      <?php endforeach; ?>
+        </ul>
+      </div>
+      
+    </div>
+  </form>
+  
+  
 </body>
 </html>

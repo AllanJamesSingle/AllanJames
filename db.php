@@ -14,7 +14,7 @@ try{
   
   $sql="CREATE TABLE IF NOT EXISTS $table(id INT AUTO_INCREMENT PRIMARY KEY, task VARCHAR(255) NOT NULL, location VARCHAR(255) NOT NULL, date VARCHAR(255) NOT NULL)";
   $pdo->exec($sql);
-  echo "Database and Table Created successfully";
+  //echo "Database and Table Created successfully";
 }catch(PDOException $e){
   echo "Connection failed";
 }
